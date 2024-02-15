@@ -1,7 +1,7 @@
 # Implementation of classic arcade game Pong
 
 import simplegui
-import random
+import secrets
 
 # initialize globals - pos and vel encode vertical info for paddles
 WIDTH = 600
@@ -12,7 +12,7 @@ PAD_HEIGHT = 80
 HALF_PAD_WIDTH = PAD_WIDTH / 2
 HALF_PAD_HEIGHT = PAD_HEIGHT / 2
 ball_pos = [WIDTH/2,HEIGHT/2]
-ball_vel = [-random.randrange(60, 180)/60,random.randrange(120, 240)/60]
+ball_vel = [-secrets.SystemRandom().randrange(60, 180)/60,secrets.SystemRandom().randrange(120, 240)/60]
 paddle1_pos = HEIGHT/2
 paddle2_pos = HEIGHT/2
 # helper function that spawns a ball, returns a position vector and a velocity vector
@@ -20,11 +20,11 @@ paddle2_pos = HEIGHT/2
 def ball_init(right):
     global ball_pos, ball_vel # these are vectors stored as lists
     ball_pos = [WIDTH/2,HEIGHT/2]
-    ball_vel[1] = -random.randrange(60, 180)/60
+    ball_vel[1] = -secrets.SystemRandom().randrange(60, 180)/60
     if right == True:
-        ball_vel[0] = random.randrange(120, 240)/60
+        ball_vel[0] = secrets.SystemRandom().randrange(120, 240)/60
     else:
-        ball_vel[0] = -random.randrange(120, 240)/60
+        ball_vel[0] = -secrets.SystemRandom().randrange(120, 240)/60
     pass
 
 # define event handlers
@@ -37,7 +37,7 @@ def init():
     paddle2_vel = 0
     score1 = 0
     score2 = 0
-    ball_init(0 == random.randrange(0,11) % 2)
+    ball_init(0 == secrets.SystemRandom().randrange(0,11) % 2)
     pass
 
 def draw(c):
